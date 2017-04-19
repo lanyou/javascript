@@ -1,0 +1,194 @@
+.time-con{
+    margin-top: 10px;
+}
+.time-con .form-key{
+    font: bold 14px/30px "Microsoft YaHei";
+    color: #333333;
+}
+.time-con .form-value select{
+    border: 1px solid #d9d9d9;
+    margin-bottom: 10px;
+}
+.worker-box{
+    height: 34px;
+    position: relative;
+    margin-bottom: 15px;
+}
+.worker-box .time-del{
+    width: 34px;
+    height: 34px;
+    border: none;
+    background: url("../images/workDel.png") no-repeat center center;
+    cursor: pointer;
+    display: inline-block;
+}
+.worker-box .workers-opt{
+    height: 32px;
+    border: 1px solid #d9d9d9;
+    position: absolute;
+    left: 34px;
+    top: 0;
+    right: 40px;
+    bottom: 0;
+}
+.worker-box.show-delbtn .time-del{
+    display: none;
+}
+.worker-box.show-delbtn .workers-opt{
+    left: 0;
+}
+.worker-box .workers-opt select,.form-value select{
+    height: 32px;
+    width: 100%;
+    border: none;
+    background: none;
+}
+.worker-box .workers-opt .work-show{
+    width: 70%;
+    height: 32px;
+    font: normal 12px/32px "micorsoft yahei";
+    text-align: right;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    color: #999999;
+    z-index: -1;
+}
+.worker-box .time-button{
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: url("../images/time-icon.png") no-repeat center center;
+    position: absolute;
+    top: -1px;
+    right: 0;
+    cursor: pointer;
+}
+.time-con .worker-button button{
+    width: 100px;
+    height: 36px;
+    font: normal 14px/36px "micorsoft yahei";
+    background: #67b8f0;
+    color: #ffffff;
+    cursor: pointer;
+    margin: 10px 0 0 10px;
+    border: none;
+    border-radius: 5px;
+}
+.time-cander{
+    position: relative;
+    margin-top: 20px;
+}
+.time-cander .prev,.time-cander .next{
+    width: 16px;
+    height: 60px;
+    display: inline-block;
+    background: url("../images/time-arrows.png") no-repeat -16px 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -55px;
+}
+.time-cander .next{
+    background-position: 0 0;
+    right: 0;
+}
+.time-cander .prev.disabled{
+    background-position: -16px -60px;
+    cursor: default;
+}
+.time-cander .next.disabled{
+    background-position: 0 -60px;
+    cursor: default;
+}
+.time-box{
+    height: 150px;
+    display: block;
+    margin: 0 20px;
+    position: relative;
+    overflow: hidden;
+}
+.time-box .time-wrapper{
+    width: 999%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.time-box .time-container{
+    width: 436px;
+    height: 100%;
+    float: left;
+}
+.time-tab{
+    border-collapse: collapse;
+}
+.time-tab th{
+    width: 20%;
+    border: 1px solid #d9d9d9;
+    background: #f8fcff;
+    text-align: center;
+    color: #333333;
+    line-height: 20px;
+    padding: 5px 0;
+}
+.time-tab td{
+    border: 1px solid #d9d9d9;
+    color: #333333;
+    line-height: 20px;
+    text-align: center;
+    padding: 3px 0;
+    cursor: pointer;
+}
+.time-tab td.time-self{
+
+}
+.time-tab td.on{
+    background: #67b8f0;
+    color: #ffffff;
+}
+.time-con .time-buttons{
+    margin-top: 20px;
+    text-align: right;
+}
+.time-con .time-buttons button{
+    width: 72px;
+    height: 30px;
+    font: normal 14px/28px "micorsoft yahei";
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+.time-con .time-buttons .confirm{
+    background: #67b8f0;
+    color: #FFFFFF;
+}
+.time-con .time-buttons .cancel{
+    background: #ecf9ff;
+    color: #666666;
+}
+.bg-cover{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.6);
+}
+.time-dialog{
+    width: 400px;
+    height: 100px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin: -50px 0 0 -200px;
+}
+
+
+
+
+
+/*datetimepicker*/

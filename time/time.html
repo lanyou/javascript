@@ -1,0 +1,399 @@
+<link type="text/css" href="resource/css/time.css" rel="stylesheet" />
+<form id="scheduleForm">
+<div class="time-con">
+    <div class="form-key">考勤社区：</div>
+    <div class="form-value">
+        <select name="area" id="areaOption">
+            <option value="1">福安社区</option>
+            <option value="2">翠云街道</option>
+        </select>
+    </div>
+    <div class="form-key">考勤人员：</div>
+    <div class="worker-button"><button type="button">添加人员</button> </div>
+    <div class="time-cander" style="display: none">
+        <a href="javascript:;" class="prev disabled"></a>
+        <a href="javascript:;" class="next"></a>
+        <div class="time-box">
+            <div id="time-wrapper" class="time-wrapper">
+
+            </div>
+        </div>
+        <div class="time-buttons">
+            <button type="button" class="confirm">确定</button>
+            <button type="button" class="cancel">取消</button>
+        </div>
+    </div>
+</div>
+</form>
+<!--网格员模板-->
+<script id="worker-temp" type="text/html">
+    <%for(var i=0; i<list.length;i++){%>
+    <div class="worker-box">
+        <button type="button" class="time-del"></button>
+        <div class="workers-opt">
+            <select name="worker">
+                <option value="">请选择</option>
+                <%for(var w=0;w<workers.length;w++){
+                var option = '';
+                if(workers[w].id==list[i].id){
+                    option += '<option value="'+workers[w].id+'" selected="selected">'+workers[w].name;
+                }else{
+                    option += '<option value="'+workers[w].id+'">'+workers[w].name
+                }
+                option += '</option>';
+
+                %>
+                <%=#option%>
+                <%}%>
+            </select>
+            <input type="hidden" name="worklist[0]" value="<%=list[i].work%>" />
+        </div>
+        <button type="button" class="time-button" data-userid="<%=list[i].id%>"></button>
+    </div>
+    <%}%>
+</script>
+<!--时间选择模板-->
+<script id="time-temp" type="text/html">
+    <%for (var i=0;i<date_arr.length;i++) {%>
+    <div class="time-container">
+        <table width="100%" cellspacing="0" cellpadding="0" class="time-tab" data-year="<%=date_arr[i].year%>">
+            <tr>
+                <th>周一<br><%=date_arr[i].dateList[0]%></th>
+                <th>周二<br><%=date_arr[i].dateList[1]%></th>
+                <th>周三<br><%=date_arr[i].dateList[2]%></th>
+                <th>周四<br><%=date_arr[i].dateList[3]%></th>
+                <th>周五<br><%=date_arr[i].dateList[4]%></th>
+            </tr>
+            <tr>
+                <%for (var d=0;d<5;d++){%>
+                <td class="<%=date_arr[i].workList[d]?'on':''%>"><p>早班</p><p>9:00-18:00</p></td>
+                <%}%>
+            </tr>
+            <tr>
+                <%for (var d=0;d<5;d++){%>
+                <td class="time-self <%=date_arr[i].selfList[d]?'on':''%>">
+                    <% if(date_arr[i].selfList[d]){%>
+                        <%=date_arr[i].selfList[d]%>
+                    <% }else {%>
+                        <p>自定义</p><p>时间段</p>
+                    <%}%>
+                </td>
+                <%}%>
+            </tr>
+        </table>
+    </div>
+    <%}%>
+</script>
+<!--自定义时间段弹框-->
+<div id="selfDialog" style="display: none">
+    <div  style="padding-top: 20px;text-align: center;">
+        <input type="text" id="prevTime" class="time-ipt" />-<input type="text" id="nextTime" class="time-ipt" />
+    </div>
+</div>
+<script type="text/javascript" src="resource/js/template-native.js"></script>
+
+<script type="text/javascript" src="resource/js/common.js"></script>
+<script type="text/javascript">
+$(function () {
+    getWeekNum();
+//添加网格员
+function initWorkerTemp(data) {
+    var workerHTML = template('worker-temp', data);
+    $(".worker-button").before(workerHTML);
+    $(".worker-box:first").addClass("show-delbtn");
+};
+var wokerdata = {
+    "workers": [{"name": "张一", "id": 1}, {"name": "张二", "id": 2}],
+    list:[
+        {"id": 1, "work": mnData}
+    ]
+};
+initWorkerTemp(wokerdata);
+//切换小区事件
+    $("#areaOption").change(function () {
+        $(".worker-box").remove();
+        $("#time-wrapper").empty().css("left","0px");
+        $(".time-cander .prev").addClass("disabled");
+        $(".time-cander").hide();
+        $(".worker-button").show();
+        initWorkerTemp(wokerdata);
+    });
+$(".worker-button button").on("click",function () {
+    var d = {
+        "workers": [{"name": "张一", "id": 1}, {"name": "张二", "id": 2}],
+        list: [{}]
+    };
+    initWorkerTemp(d);
+    hiddenReset();
+});
+//选择网格员事件
+$(".time-con").on("change",".workers-opt select",function () {
+    var t = $(this);
+    if(!t.val()) return false;
+    var tf = false;
+    $(".time-con select").not(t).each(function (i, e) {
+        if($(e).find("option:selected").val() == t.find("option:selected").val()){
+            tf = true;
+            return;
+        }
+    });
+    if(tf) {
+        alert("已经选择过了");
+        t.find("option:first").attr("selected",true);
+        return false;
+    }
+    t.siblings("input").val('');
+    t.parent().siblings("button").attr("data-userid",t.find("option:selected").val());
+});
+//初始化日历表
+function initTimeByUser(timeDate){
+    var D = new Date();
+    var now_date = D.getDate();//当前日期
+    var now_week = D.getDay();//当前周几
+    switch (now_week){
+        case 0:
+            var diff_day = 1;
+            break;
+        case 6:
+            var diff_day = 2;
+            break;
+        default:
+            var diff_day = (7-now_week+1);
+            break;
+    }
+    var next_D = new Date(D.getTime()+(diff_day*24*60*60*1000));
+    var next_date = next_D.getDate();//下周开始的第一天
+    var date_arr = [];//周数组
+    var mnData = timeDate;
+    for(var w=0;w<4;w++){
+        date_arr[w] = {};
+        date_arr[w].dateList = [];
+        date_arr[w].weekList = [];
+        date_arr[w].workList = [];
+//        date_arr[w].nigtList = [];
+        date_arr[w].selfList = [];
+        for(var d=0;d<5;d++){
+            var new_D = new Date(next_D.getTime()+((d+w*7)*24*60*60*1000));
+            var new_month = new_D.getMonth()+1;
+            var new_day = new_D.getDate();
+            var new_year = new_D.getFullYear();
+            date_arr[w].weekList[d] = getWeekName(d);
+            date_arr[w].year = new_year;
+            date_arr[w].dateList[d] = new_month+"月"+new_day+"日";
+            date_arr[w].workList[d]="";
+//            date_arr[w].nigtList[d]="";
+            date_arr[w].selfList[d]="";
+            if(mnData){
+                for(var u=0;u<mnData.dateList.length;u++){
+                    if(mnData.dateList[u].date == new_year+"年"+new_month+"月"+new_day+"日"){
+                        var udate = mnData.dateList[u];
+                        if(udate.workList){
+                            date_arr[w].workList[d]=udate.morworkning;
+                        }
+                        if(udate.setBySelf){
+                            date_arr[w].selfList[d]=udate.setBySelf;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    var time_obj = {};
+    time_obj["date_arr"] =  date_arr;
+    console.log(date_arr)
+    var html = template('time-temp', time_obj);
+    document.getElementById('time-wrapper').innerHTML = html;
+};
+
+
+var mnData = {"userId":34,dateList:[{"date":"2017年3月6日","work":"早班 9:00-11:00","setBySelf":"8:00-9:00"},{"date":"2017年3月9日","work":"","setBySelf":"8:00-9:00"}]};
+
+
+
+//滚动事件开始
+var flag_index = 0;
+//向左滑
+    $(".time-cander .prev").on("click",function () {
+        if($(this).hasClass("disabled")){
+            return false;
+        }
+        $(this).removeClass("disabled");
+        $(".time-cander .next").removeClass("disabled");
+        flag_index--;
+        if(flag_index<=0){
+            flag_index = 0;
+            $(this).addClass("disabled");
+        }
+        var time_box = $(".time-box");
+        var slid_w = time_box.width();
+        setTimeout(function () {
+            $("#time-wrapper").animate({left:"-"+(flag_index*slid_w)+"px"},300);
+        },300);
+    });
+//向右滑
+    $(".time-cander .next").on("click",function () {
+        if($(this).hasClass("disabled")){
+            return false;
+        }
+        $(this).removeClass("disabled");
+        $(".time-cander .prev").removeClass("disabled");
+        flag_index++;
+        if(flag_index>=3){
+            flag_index = 3;
+            $(this).addClass("disabled");
+        }
+        var time_box = $(".time-box");
+        var slid_w = time_box.width();
+        setTimeout(function () {
+            $("#time-wrapper").animate({left:"-"+(flag_index*slid_w)+"px"},300);
+        },300);
+    });
+//滑动事件结束
+
+
+    //排班事件开始
+//{"userId":34,dateList:[{"date":"2017年3月3日","morning":"早班 9:00-11:00"，"night":"晚班 14:00-18:00","setBySelf":"8:00-9:00"}]}
+    //var newUserData = cloneData(mnData);
+    //选择排班时间
+    $("#time-wrapper").on("click","td:not('.time-self')",function (e) {
+        var th = $(this),
+            th_tr = th.parent(),
+            th_tab = th.parents("table"),
+            th_th = th_tab.find("th").eq(th.index());
+        var newUserData = Convert.StringToJSON($(".time-con .confirm").attr("data"));
+
+        var click_date = th_tab.attr("data-year")+"年"+(th_th.html().split("<br>")[1]);
+        var hasResult = hasDate(click_date,newUserData.dateList);
+
+        if(th.hasClass("on")){
+            var dataIndex = hasResult.isIndex;
+            newUserData.dateList[dataIndex].work= "";
+            th.removeClass("on");
+        }else{
+            if(hasResult.isHas){
+                newUserData.dateList[hasResult.isIndex].work = "全天 08:00-18:00";
+            }else {
+                var obj = {};
+                obj.date = th_tab.attr("data-year") + "年" + (th_th.html().split("<br>")[1]);
+                obj.work = "全天 08:00-18:00";
+                obj.setBySelf = "";
+                newUserData.dateList.push(obj);
+            }
+            th.addClass("on");
+        }
+        var newUserDataStr = Convert.ToJSONString(resetData(newUserData));
+        $(".time-con .confirm").attr("data",newUserDataStr);
+        console.log(newUserData)
+        e.stopPropagation();
+    });
+    //自定义时间段
+    $("#time-wrapper").on("click","td.time-self",function (e) {
+        $(".time-self").removeClass("cur");
+        $(this).addClass("cur");
+        var th = $(this),
+            th_tr = th.parent(),
+            th_tab = th.parents("table"),
+            th_th = th_tab.find("th").eq(th.index());
+        $("#selfDialog").dialog({
+            width: 220,
+            height: 200,
+            title: "自定义时间段",
+            modal: true,
+            buttons:{
+                "确定":function () {
+                    //遍历查找数据重写数据
+                    if($("#prevTime").val()!="" && $("#nextTime").val()!=""){
+                        $(".time-self.cur").html('<p>'+$("#prevTime").val()+'-'+$("#nextTime").val()+'</p>');
+                        $("#selfDialog").dialog('close');
+
+                        var newUserData = Convert.StringToJSON($(".time-con .confirm").attr("data"));
+
+                        var click_date = th_tab.attr("data-year")+"年"+((th_th.html()).split("<br>")[1]);
+                        var hasResult = hasDate(click_date,newUserData.dateList);
+                        if(hasResult.isHas){
+                            newUserData.dateList[hasResult.isIndex].setBySelf = $("#prevTime").val()+'-'+$("#nextTime").val();
+                        }else {
+                            var obj = {};
+                            obj.date = th_tab.attr("data-year") + "年" + (th_th.html().split("<br>")[1]);
+                            obj.work = "";
+                            obj.setBySelf = $("#prevTime").val()+'-'+$("#nextTime").val();
+                            newUserData.dateList.push(obj);
+                        }
+                        var newUserDataStr = Convert.ToJSONString(resetData(newUserData));
+                        console.log(newUserDataStr)
+                        $(".time-con .confirm").attr("data",newUserDataStr);
+                        th.removeClass("cur").addClass("on");
+                    }
+                },
+                "关闭": function () {
+                    $(this).dialog("close");
+                }
+            },
+            open: function () {
+                $("#prevTime,#nextTime").blur();
+                $("#prevTime").timepicker({
+                    format:"hh:ii",
+                    hourGrid: 4,
+                    minuteGrid: 10
+                });
+                $("#nextTime").timepicker({
+                    format:"hh:ii",
+                    hourGrid: 4,
+                    minuteGrid: 10
+                });
+            }
+        });
+        e.stopPropagation();
+    });
+    //选定排班人员显示排班时间
+    $(".time-con").on("click",".time-button",function () {
+        var id = $(this).attr("data-userid");
+        $(".time-button").removeClass("cur");
+        $(this).addClass("cur").attr("data",Convert.ToJSONString({"userId":34,dateList:[]}));
+        $(".time-con .confirm").attr("data",Convert.ToJSONString({"userId":34,dateList:[]}));
+        $(".time-cander").show();
+        $(".worker-button").hide();
+        flag_index = 0;
+        $("#time-wrapper").css("left","0");
+        $(".time-cander .prev").addClass("disabled");
+        initTimeByUser(mnData);
+    });
+
+
+    //确定排班事件
+    $(".time-con").on("click",".confirm",function () {
+        var th = $(this);
+        var dateSTR = Convert.ToJSONString(th.attr("data"));
+        $(".time-button.cur").parent().find("input:hidden").val(dateSTR);
+        $(".time-cander").hide();
+        $(".worker-button").show();
+
+    });
+    //取消
+    $(".time-con").on("click",".cancel",function () {
+        $(".time-cander").hide();
+        $(".worker-button").show();
+        flag_index = 0;
+    });
+    //删除人员
+    $(".time-con").on("click",".time-del",function(){
+        $("#time-wrapper").empty();
+        $(".time-cander").hide();
+        $(".worker-button").show();
+        $(this).parent().remove();
+        flag_index = 0;
+        hiddenReset();
+    });
+    //重组人员隐藏域的name值
+    function hiddenReset(){
+        $(".workers-opt").each(function (i, e) {
+            var hipt = $(e).find('input[type="hidden"]');
+            var hname = hipt.attr("name"),
+                rname = hname.replace(/\d+/g,i);
+
+            hipt.attr("name",rname);
+        });
+    }
+
+});
+</script>

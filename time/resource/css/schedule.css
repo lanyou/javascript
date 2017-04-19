@@ -1,0 +1,65 @@
+@charset "utf-8";
+.thisCrumbs{
+    background: #ffffff;
+    border-bottom: 1px solid #b8d5e5;
+    display: block !important;
+    left: 0;
+    padding-right: 0;
+}
+.schedule-main{
+    margin: 40px 20px 0;
+}
+#nav a.globalOrgBtnMod, a.globalOrgBtnMod{
+    border: none;
+    background: #5cb6f2 !important;
+}
+.basic-input{
+    border: 1px solid #b8d5e5;
+    margin-right: 10px;
+}
+.schedule-week{
+    width: 420px;
+    margin: 0 auto;
+    position: relative;
+    top: -45px;
+    text-align: center;
+    color: #5cb6f2;
+}
+.schedule-week .week-title{
+    font: normal 30px/36px "Microsoft YaHei";
+}
+.schedule-week .week-date{
+    font: normal 16px/24px "Microsoft YaHei";
+}
+.schedule-tab{
+    border-collapse: collapse;
+}
+.schedule-tab th{
+    padding: 5px 0;
+    border: 1px solid #b6e1f2;
+    color: #2e3e4d;
+    font: normal 16px/21px "Microsoft YaHei";
+    background: #cef1ff;
+    text-align: center;
+}
+.schedule-tab td{
+    padding: 6px 0;
+    border: 1px solid #b6e1f2;
+    color: #2e3e4d;
+    text-align: center;
+}
+.schedule-tab th p{
+    font: normal 16px/21px "Microsoft YaHei";
+}
+.schedule-tab td p{
+    font: normal 14px/21px "Microsoft YaHei";
+}
+.schedule-tab .tdbg td{
+    background: #f8fcff;
+}
+
+
+.time-ipt{
+    width: 80px;
+    border: 1px solid #ccc;
+}

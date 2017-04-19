@@ -1,0 +1,336 @@
+body{
+    font: normal 12px "micorsoft yahei";
+    background: #dae9f2;
+}
+.ui-layout-north{
+    height: 70px;
+}
+.systemheader{
+    height: 70px;
+    background: #67b8f0;
+    box-shadow: 0 2px 2px rgba(47,58,76,.2);
+}
+.systemheader .logo{
+    width: 165px;
+    height: 36px;
+    display: inline-block;
+    float: left;
+    margin: 17px 0 0 17px;
+    background: url("../images/newStyle/logo.png") no-repeat;
+}
+.systemheader .logo-title{
+    width: 673px;
+    height: 26px;
+    display: inline-block;
+
+    background: url("../images/newStyle/logo-title.png") no-repeat;
+    position: absolute;
+    left: 225px;
+    top: 22px;
+}
+.systemheader .top-right{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.systemheader .top-cloud{
+    float: left;
+    border-right: 1px solid #79c1f2;
+}
+.systemheader .top-cloud a{
+    height: 40px;
+    display: block;
+    padding: 15px 30px;
+    color: #ffffff;
+    text-align: center;
+}
+.top-icon{
+    display: inline-block;
+    vertical-align: middle;
+    background: url("../images/newStyle/top-icon.png") no-repeat;
+}
+.icon-cloud{
+    display: block;
+    width: 32px;
+    height: 22px;
+    background-position: 0 0;
+    margin-bottom: 2px;
+}
+.systemheader .top-user{
+    float: left;
+    position: relative;
+}
+.systemheader .user-msg{
+    height: 40px;
+    padding: 15px 30px;
+    cursor: pointer;
+}
+.systemheader .topMessage{
+    width: 34px;
+    height: 34px;
+    background: url("../images/newStyle/top-icon.png") no-repeat 0 -51px;
+    position: relative;
+    float: left;
+}
+.systemheader .topMessage span{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border: 1px solid #ffffff;
+    background: #ff8764;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    color: #ffffff;
+    font-family: arial;
+}
+.systemheader .user-name{
+    font: normal 14px/40px "micorsoft yahei";
+    color: #ffffff;
+    padding: 0 10px;
+    float: left;
+}
+.systemheader .user-arrow{
+    width: 15px;
+    height: 7px;
+    display: inline-block;
+    float: left;
+    float: left;
+    background-position: 0 -115px;
+    margin-top: 16px;
+}
+.systemheader .top-menu{
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 0 3px rgba(153,172,191,.4);
+    position: absolute;
+    right: 0;
+    top: 70px;
+    padding: 5px 0;
+    display: none;
+}
+.systemheader .top-menu li{
+    height: 40px;
+    line-height: 40px;
+    margin: 0 10px;
+    border-bottom: 1px solid #b8d5e5;
+}
+.systemheader .top-menu li.lastli{
+    border: none;
+}
+.systemheader .top-menu li a{
+    height: 40px;
+    display: block;
+    color: #a6abbe;
+}
+.systemheader .top-menu li a:hover{
+    color: #67b8f0;
+}
+.systemheader .user-setting,.systemheader .style-setting,.systemheader .msg-setting,.systemheader .return-setting,.systemheader .out-setting{
+    width: 24px;
+    height: 40px;
+    background-position: 0 -133px;
+    margin-left: 5px;
+}
+.systemheader .style-setting{
+    background-position: 0 -169px;
+}
+.systemheader .msg-setting{
+    background-position: 0 -215px;
+}
+.systemheader .return-setting{
+    background-position: 0 -215px;
+}
+.systemheader .out-setting{
+    background-position: 0 -295px;
+}
+/*左侧样式覆盖*/
+.accordionMenuTit{
+    display: none;
+}
+.ui-layout-west{
+    width: 200px;
+    border: none;
+    background: #ffffff;
+    overflow: visible;
+}
+.innerBox{
+    margin-top: 10px;
+}
+.leftAccordion .noSubMenu a{
+    height: 60px;
+    font: normal 14px/60px "micorsoft yahei";
+    color: #6b7a99;
+    text-shadow: none;
+    text-indent: 60px;
+    position: relative;
+}
+.leftAccordion .noSubMenu a span{
+    font: normal 14px/60px "micorsoft yahei";
+}
+.leftAccordion .noSubMenu a.cur{
+    background: #5cb6f2;
+    text-shadow: none;
+    font-weight: normal;
+    color: #ffffff;
+}
+.leftAccordion .noSubMenu .ui-icon,.leftAccordion .uiMenuBase .ui-icon{
+    width: 22px;
+    height: 22px;
+    background: url("../images/newStyle/left-icons.png") no-repeat;
+    position: absolute;
+    top: 19px;
+    left: 30px;
+}
+.leftAccordion .left-icon0{
+    background-position: 0 0;
+}
+.leftAccordion .cur .left-icon0{
+    background-position: -30px 0;
+}
+.leftAccordion .uiMenuBase .left-icon1,.leftAccordion .noSubMenu .left-icon1{
+    background-position: -2px -22px;
+}
+.leftAccordion .cur .left-icon1,.leftAccordion .uiMenuCur .left-icon1{
+    background-position: -28px -22px;
+}
+.leftAccordion .uiMenuBase .left-icon2,.leftAccordion .noSubMenu  .left-icon2{
+    background-position: 0 -44px;
+}
+.leftAccordion .cur .left-icon2,.leftAccordion .uiMenuCur .left-icon2{
+    background-position: -30px -44px;
+}
+.leftAccordion .uiMenuBase .left-icon3,.leftAccordion .noSubMenu .left-icon3{
+    background-position: 0 -66px;
+}
+.leftAccordion .cur .left-icon3,.leftAccordion .uiMenuCur .left-icon3{
+    background-position: -30px -66px;
+}
+.leftAccordion .uiMenuBase .left-icon4,.leftAccordion .noSubMenu .left-icon4{
+    background-position: 0 -88px;
+}
+.leftAccordion .cur .left-icon4,.leftAccordion .uiMenuCur .left-icon4{
+    background-position: -30px -88px;
+}
+.leftAccordion .uiMenuBase .left-icon5,.leftAccordion .noSubMenu .left-icon5{
+    background-position: 0 -110px;
+}
+.leftAccordion .cur .left-icon5,.leftAccordion .uiMenuCur .left-icon5{
+    background-position: -30px -110px;
+}
+.leftAccordion .uiMenuBase .left-icon6,.leftAccordion .noSubMenu .left-icon6{
+    background-position: 0 -132px;
+}
+.leftAccordion .cur .left-icon6,.leftAccordion .uiMenuCur .left-icon6{
+    background-position: -30px -132px;
+}
+.leftAccordion .uiMenuBase .left-icon7,.leftAccordion .noSubMenu .left-icon7{
+    background-position: 0 -154px;
+}
+.leftAccordion .cur .left-icon7,.leftAccordion .uiMenuCur .left-icon7{
+    background-position: -30px -154px;
+}
+.leftAccordion .uiMenuBase .left-icon8,.leftAccordion .noSubMenu .left-icon8{
+    background-position: 0 -176px;
+}
+.leftAccordion .cur .left-icon8,.leftAccordion .uiMenuCur .left-icon8{
+    background-position: -30px -176px;
+}
+.leftAccordion .uiMenuBase .left-icon9,.leftAccordion .noSubMenu .left-icon9{
+    background-position: 0 -198px;
+}
+.leftAccordion .cur .left-icon9,.leftAccordion .uiMenuCur .left-icon9{
+    background-position: -30px -198px;
+}
+.leftAccordion .uiMenuBase{
+    height: 60px;
+    padding-left: 60px;
+    font: normal 14px/60px "micorsoft yahei";
+    color: #6b7a99;
+}
+.leftAccordion .uiMenuBase .newRed{
+    font: normal 14px/60px "micorsoft yahei";
+}
+.leftAccordion .uiMenuCur{
+    background: #5cb6f2;
+    text-shadow: none;
+    font-weight: normal;
+    color: #ffffff;
+}
+.leftAccordion .uiMenuBase .left-arrow{
+    width: 12px;
+    height: 7px;
+    display: inline-block;
+    position: absolute;
+    top: 27px;
+    right: 18px;
+    background: url("../images/newStyle/left-icons.png") no-repeat 0 -235px;
+}
+.leftAccordion .uiMenuCur .left-arrow{
+    background-position: -30px -235px;
+}
+
+.leftAccordion .uiContBase{
+    background: #f0f9ff;
+    padding: 15px 0;
+}
+.leftAccordion ul li{
+    line-height: 32px;
+}
+.leftAccordion ul li a{
+    line-height: 32px;
+    text-indent: 69px;
+    color: #666666;
+}
+.leftAccordion ul li a span{
+    font-size: 14px;
+}
+.leftAccordion ul li a.cur{
+    font-weight: normal;
+    text-shadow: none;
+    background: #ffffff;
+    color: #666666;
+}
+.leftAccordion ul li .float-menu{
+    width: 182px;
+    padding: 10px 0;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(64,64,64,.14);
+    position: absolute;
+    right: -202px;
+    top: 0;
+}
+.left-menu-third{
+    width: 0;
+    position: absolute;
+    left: 205px;
+    z-index: 1000;
+}
+.left-menu-third .float-menu{
+    width: 182px;
+    padding: 10px 0;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(64,64,64,.14);
+}
+.left-menu-third .float-menu a{
+    display: block;
+    line-height: 32px;
+    text-indent: 69px;
+    color: #666666;
+    text-align: center;
+    text-indent: 0px;
+}
+.left-menu-third .float-menu a:hover{
+    background: #cef1ff;
+}
+
+
+
+.ui-layout-center{
+    background: #dae9f2;
+}

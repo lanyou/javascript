@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排班表</title>
+    <link type="text/css" href="resource/css/formgrid.css" rel="stylesheet" />
+    <link type="text/css" href="resource/css/ext-all.css" rel="stylesheet" />
+    <link type="text/css" href="resource/css/main.css" rel="stylesheet" />
+    <link type="text/css" href="resource/css/system/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" />
+    <link type="text/css" href="resource/css/newStyle.css" rel="stylesheet" />
+    <link type="text/css" href="resource/css/schedule.css" rel="stylesheet" />
+    <script type="text/javascript" src="resource/js/jquery.min.js"></script>
+    <script type="text/javascript" src="resource/js/widget.js"></script>
+    <script type="text/javascript" src="resource/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="text/javascript" src="resource/js/init.js"></script>
+    <!--[if  lt IE 9]>
+    <script type="text/javascript" src="resource/js/css3-mediaqueries.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var PATH='';
+        var RESOURCE_PATH='';
+        var USER_ORG_ID='1';
+        var USER_ORG_LEVEL='60';
+        var listUrl;
+        var USER_ID="125553";
+
+        var version = '?1.0';
+        var development = true;
+        var sessiondId = 'eeeb9761-64d0-4c50-978d-b088f9c2f552';
+    </script>
+</head>
+<body>
+<div class="ui-layout-north">
+    <div class="systemheader cf">
+        <a href="module.jsp#index" class="logo"></a>
+        <span class="logo-title"></span>
+        <div class="top-right">
+            <ul>
+                <li class="top-cloud">
+                    <a href="#" target="_blank"><span class="top-icon icon-cloud"></span><span>云图</span> </a>
+                </li>
+                <li class="top-user">
+                    <div class="user-msg cf">
+                        <a href="javascript:;" class="top-icon topMessage"><span id="msg" style="display: block; opacity: 1;">2</span></a>
+                        <span class="user-name">王敏杰</span>
+                        <span class="top-icon user-arrow"></span>
+                    </div>
+                    <ul class="top-menu">
+                        <li><a href="javascript:;"><span class="top-icon user-setting"></span>个人设置</a> </li>
+                        <li><a href="javascript:;"><span class="top-icon style-setting"></span>风格设置</a> </li>
+                        <li><a href="javascript:;"><span class="top-icon msg-setting"></span>平台消息</a> </li>
+                        <li><a href="javascript:;"><span class="top-icon return-setting"></span>返回导航</a> </li>
+                        <li class="lastli"><a href="javascript:;"><span class="top-icon out-setting"></span>退出账号</a> </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="ui-layout-west">
+    <div id="accordion" class="leftAccordion new_leftAccordion">
+        <div id="leftMenuList" class="innerBox">
+            <div class="noSubMenu">
+                <a href="#index" id="gridIntroductionManagement" baseurl="" leaderurl="" gridurl="" class="cur">
+                    <span class="ui-icon left-icon0"></span>
+                    <span>首页</span>
+                </a>
+            </div>
+            <h3 class="uiMenuBase">
+                <div class="newRed"><span class="ui-icon left-icon1"></span>组织机构<span class="left-arrow"></span> </div>
+            </h3>
+            <div class="uiContBase">
+                <ul>
+                    <li>
+                        <a href="#gridManageSystem-basicLevelPartyManagement" id="basicLevelPartyManagement" baseurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" leaderurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" gridurl="">
+                            <span>基层党委</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#gridManageSystem-departmentPartyManagement" id="departmentPartyManagement" baseurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=DepartmentParty" leaderurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=DepartmentParty" gridurl="">
+                            <span>部门党委</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="noSubMenu">
+                <a href="#index" id="" baseurl="" leaderurl="" gridurl="" class="cur">
+                    <span class="ui-icon left-icon2"></span>
+                    <span>统一搜索</span>
+                </a>
+            </div>
+            <h3 class="uiMenuBase">
+                <div class="newRed"><span class="ui-icon left-icon3"></span>数据管理</div>
+            </h3>
+            <div class="uiContBase">
+                <ul>
+                    <li>
+                        <a href="#gridManageSystem-basicLevelPartyManagement" id="basicLevelPartyManagement" baseurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" leaderurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" gridurl="">
+                            <span>基层党委</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="noSubMenu">
+                <a href="#index" id="" baseurl="" leaderurl="" gridurl="" class="cur">
+                    <span class="ui-icon left-icon4"></span>
+                    <span>研判分析</span>
+                </a>
+            </div>
+            <h3 class="uiMenuBase">
+                <div class="newRed"><span class="ui-icon left-icon5"></span>人口信息</div>
+            </h3>
+            <div class="uiContBase">
+                <ul>
+                    <li>
+                        <a href="#gridManageSystem-basicLevelPartyManagement" id="basicLevelPartyManagement" baseurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" leaderurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" gridurl="">
+                            <span>基层党委</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="uiMenuBase">
+                <div class="newRed"><span class="ui-icon left-icon6"></span>房屋信息</div>
+            </h3>
+            <div class="uiContBase">
+                <ul>
+                    <li>
+                        <a href="#gridManageSystem-basicLevelPartyManagement" id="basicLevelPartyManagement" baseurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" leaderurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" gridurl="">
+                            <span>基层党委</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="uiMenuBase">
+                <div class="newRed"><span class="ui-icon left-icon7"></span>单位场所</div>
+            </h3>
+            <div class="uiContBase">
+                <ul>
+                    <li>
+                        <a href="#gridManageSystem-basicLevelPartyManagement" id="basicLevelPartyManagement" baseurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" leaderurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" gridurl="">
+                            <span>基层党委</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="uiMenuBase">
+                <div class="newRed"><span class="ui-icon left-icon8"></span>日常办公</div>
+            </h3>
+            <div class="uiContBase">
+                <ul>
+                    <li>
+                        <a href="#gridManageSystem-basicLevelPartyManagement" id="basicLevelPartyManagement" baseurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" leaderurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" gridurl="">
+                            <span>基层党委</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="uiMenuBase">
+                <div class="newRed"><span class="ui-icon left-icon9"></span>事件处理</div>
+            </h3>
+            <div class="uiContBase">
+                <ul>
+                    <li class="hasChild">
+                        <a href="#gridManageSystem-basicLevelPartyManagement" id="basicLevelPartyManagement" baseurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" leaderurl="/baseinfo/primaryOrganization/primaryOrgList.jsp?name=BasicLevelParty" gridurl="">
+                            <span>基层党委</span>
+                        </a>
+                        <dl class="float-menu">
+                            <dd><a href="javascript:;">公文管理</a> </dd>
+                            <dd><a href="javascript:;">工作站台</a> </dd>
+                            <dd><a href="javascript:;">资料库</a> </dd>
+                            <dd><a href="javascript:;">民情日志</a> </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    #contentDiv{
+        position: absolute;
+        left: 20px;
+        right: 10px;
+        top: 20px;
+        bottom: 20px;
+        background: #ffffff;
+    }
+</style>
+<div class="ui-layout-center">
+    <div id="contentDiv">
+        <div class="thisCrumbs" id="thisCrumbs">
+            <div class="bd_pack">
+                <span class="curr">当前位置：</span>
+                <span class="crumbs_first"></span> &gt;
+                <span class="crumbs_second">
+	            	考核评估
+	        	</span> &gt;
+                <span class="crumbs_three">
+									日常考评</span> &gt;
+                <span class="crumbs_cur">
+											账号活跃度
+											</span>
+            </div>
+        </div>
+        <div class="schedule-main">
+            <div id="nav" class="ui-corner-all">
+                <div class="btnbanner btnbannerData">
+                    <div class="btnbanner">
+                        <a href="javascript:;" class="globalOrgBtnMod" id="globalOrgBtnMod">网格员排班</a>
+                        <a href="javascript:;" class="globalOrgBtnMod" id="timeSet">定义上班时间段</a>
+                    </div>
+                </div>
+                <select class="basic-input" name="searchType">
+                    <option value="1" selected="selected">福安社区</option>
+                    <option value="2">翠云街道</option>
+                </select>
+                <select class="basic-input" name="searchType">
+                    <option value="1" selected="selected">2月1日-2月7日</option>
+                    <option value="2">2月10日-2月15日</option>
+                </select>
+            </div>
+            <div class="schedule-week">
+                <p class="week-title">2017年 第08周</p>
+                <p class="week-date">(02.20-02.26)</p>
+            </div>
+            <div class="schedule-table">
+                <table width="100%" cellpadding="0" cellspacing="0" class="schedule-tab">
+                    <tr>
+                        <th>
+                            <p>周一</p>
+                            <p>2月1日</p>
+                        </th>
+                        <th>
+                            <p>周二</p>
+                            <p>2月2日</p>
+                        </th>
+                        <th>
+                            <p>周三</p>
+                            <p>2月3日</p>
+                        </th>
+                        <th>
+                            <p>周四</p>
+                            <p>2月4日</p>
+                        </th>
+                        <th>
+                            <p>周五</p>
+                            <p>2月5日</p>
+                        </th>
+                    </tr>
+                    <tr class="tdbg">
+                        <td>
+                            <p>早班 08:00-12:00</p>
+                            <p>王敏杰</p>
+                        </td>
+                        <td>
+                            <p>早班 08:00-12:00</p>
+                            <p>王敏杰</p>
+                        </td>
+                        <td>
+                            <p>早班 08:00-12:00</p>
+                            <p>王敏杰</p>
+                        </td>
+                        <td>
+                            <p>早班 08:00-12:00</p>
+                            <p>王敏杰</p>
+                        </td>
+                        <td>
+                            <p>早班 08:00-12:00</p>
+                            <p>王敏杰</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>自定义时间段</p>
+                            <p>王敏杰</p>
+                        </td>
+                        <td>
+                            <p>自定义时间段</p>
+                            <p>王敏杰</p>
+                        </td>
+                        <td>
+                            <p>自定义时间段</p>
+                            <p>王敏杰</p>
+                        </td>
+                        <td>
+                            <p>自定义时间段</p>
+                            <p>王敏杰</p>
+                        </td>
+                        <td>
+                            <p>自定义时间段</p>
+                            <p>王敏杰</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="scheduleDialog"></div>
+<div id="setworkDialog" style="display: none">
+    <div  style="padding-top: 20px;text-align: center;">
+        <input type="text" id="firstTime" class="time-ipt" />-<input type="text" id="lastTime" class="time-ipt" />
+    </div>
+</div>
+<script type="text/javascript" src="resource/js/dialog.js"></script>
+<script type="text/javascript" src="resource/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="resource/js/jquery.datetimepicker.js"></script>
+<script type="text/javascript">
+$(function () {
+
+    $.layout();
+    var h = $(".ui-layout-center").height()-$(".footer:visible").height();
+    $("#accordion").height(h);
+    $("#thisCrumbs").show();
+    //排班表弹框
+    $("#globalOrgBtnMod").on("click",function () {
+        $("#scheduleDialog").createDialog({
+            width: 500,
+            height: 600,
+            title: "网格员排班",
+            url: "time.html",
+            buttons:{
+                "保存":function () {
+                    
+                },
+                "关闭": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+    //定义上班时间段
+    $("#timeSet").on("click",function () {
+        $("#setworkDialog").dialog({
+            width: 220,
+            height: 200,
+            title: "定义上班时间段",
+            modal: true,
+            buttons:{
+                "确定":function () {
+                    //提交表单数据
+                    $(this).dialog("close");
+                },
+                "关闭": function () {
+                    $(this).dialog("close");
+                }
+            },
+            open: function () {
+                $("#firstTime,#lastTime").blur();
+                $("#firstTime").timepicker({
+                    format:"hh:ii",
+                    hourGrid: 4,
+                    minuteGrid: 10
+                });
+                $("#lastTime").timepicker({
+                    format:"hh:ii",
+                    hourGrid: 4,
+                    minuteGrid: 10
+                });
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>
